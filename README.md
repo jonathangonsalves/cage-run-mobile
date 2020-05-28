@@ -1,4 +1,4 @@
-# Cage Run Mobile
+# Flappy Cage Mobile
 ## Objetivo
 O objetivo deste trabalho é criar de um jogo a escolha da equipe, contendo os itens estudados até o
 momento na disciplina de tópicos especiais.

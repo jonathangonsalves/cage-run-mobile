@@ -29,8 +29,10 @@ public class MenuInicial extends AppCompatActivity {
         setContentView(R.layout.activity_menu_inicial);
         getSupportActionBar().hide();
         Intent intent = getIntent();
-        cur_user = intent.getStringExtra("cur");
-        Log.d("user_menu",cur_user);
+        if (intent.getStringExtra("cur") != null) {
+            cur_user = intent.getStringExtra("cur");
+            Log.d("user_menu", cur_user);
+        }
     }
 
     public void moveToLogin(View view){

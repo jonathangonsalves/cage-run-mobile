@@ -47,7 +47,7 @@ public class ScoreActivity extends AppCompatActivity {
 
     }
     public void moveToMenu(View view){
-        Intent intent = new Intent(ScoreActivity.this, MenuInicial.class);
+        Intent intent = new Intent(ScoreActivity.this, MainActivity.class);
         startActivity(intent);
     }
 

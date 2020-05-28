@@ -8,6 +8,7 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.flappycage.GameActivity;
 import com.example.flappycage.MainActivity;
 import com.example.flappycage.R;
 import com.example.flappycage.ScoreActivity;
@@ -39,6 +40,11 @@ public class MenuInicial extends AppCompatActivity {
 
     public void moveToScore(View view){
         Intent intent = new Intent(MenuInicial.this, ScoreActivity.class);
+        startActivity(intent);
+    }
+
+    public void moveToGame(View view){
+        Intent intent = new Intent(this, GameActivity.class);
         startActivity(intent);
     }
 }

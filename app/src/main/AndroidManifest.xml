@@ -9,7 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ScoreActivity"></activity>
+        <activity android:name=".ScoreActivity" />
+        <activity
+            android:name=".GameActivity"
+            android:noHistory="true" />
         <activity android:name=".ui.MenuInicial" />
         <activity
             android:name=".ui.login.LoginView"

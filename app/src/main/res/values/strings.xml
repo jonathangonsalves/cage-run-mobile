@@ -13,4 +13,8 @@
     <string name="flappycage">FlappyCage</string>
     <string name="score">Score</string>
     <string name="trocar_jogador">Trocar Jogador</string>
+
+    <string name="game_btn_jump">⬆️</string>
+    <string name="game_fps">~30 fps</string>
+    <string name="game_score">0</string>
 </resources>

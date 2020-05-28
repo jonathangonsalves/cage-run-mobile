@@ -18,26 +18,26 @@ public class MainActivity extends AppCompatActivity {
 
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
+    String cur_user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Button loginBtn = findViewById(R.id.btn_login);
-        SharedPreferences preferences = getSharedPreferences("user_preferences", MODE_PRIVATE);
+        SharedPreferences preferences = getSharedPreferences("user", MODE_PRIVATE);
         getSupportActionBar().hide();
     }
     public void savePreferences(View view, String newUser) {
-        sharedPreferences = getSharedPreferences(newUser, Context.MODE_PRIVATE);
+        Context context = getApplicationContext();
+        sharedPreferences = context.getSharedPreferences("user", Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
         editor.putInt(newUser, 0);
-        editor.apply();
-        //Snackbar.make(view, "Dados salvos com sucesso!!!", Snackbar.LENGTH_LONG).show();
+        editor.commit();
     }
 
     public void getPreferences(View view, String key) {
         sharedPreferences = getSharedPreferences(key, Context.MODE_PRIVATE);
-
         String result = sharedPreferences.getString(key, "");
         Toast.makeText(this, result, Toast.LENGTH_LONG).show();
     }
@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void save(View view, String user){
         savePreferences(view, user);
-        //getPreferences(view, "current_user");
+        cur_user = user;
     }
 
 
@@ -64,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void moveToMenu(View view){
         Intent intent = new Intent(MainActivity.this, MenuInicial.class);
+        intent.putExtra("cur", cur_user);
         startActivity(intent);
     }
 }

@@ -1,14 +1,17 @@
 package com.example.flappycage;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.flappycage.data.model.GameObject;
 
@@ -32,6 +35,10 @@ public class GameActivity extends AppCompatActivity {
     int score;
     int sleepTimeMS;
     boolean[] pipeScores = new boolean[6];
+    String cur_user;
+
+    private SharedPreferences prefs;
+    private SharedPreferences.Editor editor;
 
 
     Random random;
@@ -41,6 +48,9 @@ public class GameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
+        Intent intent = getIntent();
+        cur_user = intent.getStringExtra("cur");
+        Log.d("user_game",cur_user);
 
 
         SeekBar gameSpeed = (SeekBar) findViewById(R.id.seekBar_gameSpeed);
@@ -260,7 +270,15 @@ public class GameActivity extends AppCompatActivity {
             jump = true;
         else{
             Intent it = new Intent(this, ScoreActivity.class);
-            it.putExtra("score", score);
+            Context context = getApplicationContext();
+            prefs = context.getSharedPreferences("user", Context.MODE_PRIVATE);
+            Log.d("user", cur_user);
+            Integer last_res = prefs.getInt(cur_user, 0);
+            if(score > last_res){
+                editor = prefs.edit();
+                editor.putInt(cur_user, score);
+                editor.commit();
+            }
             startActivity(it);
         }
 

@@ -270,6 +270,7 @@ public class GameActivity extends AppCompatActivity {
             jump = true;
         else{
             Intent it = new Intent(this, ScoreActivity.class);
+            it.putExtra("cur", cur_user);
             Context context = getApplicationContext();
             prefs = context.getSharedPreferences("user", Context.MODE_PRIVATE);
             Log.d("user", cur_user);

@@ -25,6 +25,7 @@ public class ScoreActivity extends AppCompatActivity {
 
 
     private SharedPreferences sharedPreferences;
+    String cur_user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +33,11 @@ public class ScoreActivity extends AppCompatActivity {
         setContentView(R.layout.activity_score);
         getSupportActionBar().hide();
         TableLayout tbl = (TableLayout)findViewById(R.id.ScoreTable);
+        Intent intent = getIntent();
+        if (intent.getStringExtra("cur") != null) {
+            cur_user = intent.getStringExtra("cur");
+            Log.d("user_score", cur_user);
+        }
 
         SharedPreferences prefs = getSharedPreferences("user", MODE_PRIVATE);
         Map<String, ?> keys = prefs.getAll();
@@ -46,10 +52,17 @@ public class ScoreActivity extends AppCompatActivity {
         }
 
     }
-    public void moveToMenu(View view){
+    public void moveToMen(View view){
         Intent intent = new Intent(ScoreActivity.this, MainActivity.class);
         startActivity(intent);
     }
+
+    public void moveToMenu(View view){
+        Intent intent = new Intent(ScoreActivity.this, MenuInicial.class);
+        intent.putExtra("cur", cur_user);
+        startActivity(intent);
+    }
+
 
 
     public void addNewScore(String score, String name, String position, TableLayout tbl){
